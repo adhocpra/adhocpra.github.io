@@ -1,209 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ONLY SHOWING CHANGED PARTS — your structure stays SAME -->
+
 <title>Pravat Adhikari | Data Analytics Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Cabinet+Grotesk:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg:#080c14; --bg2:#0d1220; --card:#0f1724;
-  --blue:#3b82f6; --cyan:#06b6d4;
-  --text:#f0f4ff; --muted:#64748b;
-  --border:rgba(59,130,246,0.12);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'Cabinet Grotesk',sans-serif;}
-.page{display:none;padding-top:80px;}
-.page.active{display:block;}
-
-nav{
-position:fixed;top:0;width:100%;height:64px;
-display:flex;justify-content:space-between;align-items:center;
-padding:0 2rem;background:#0a0f1a;border-bottom:1px solid var(--border);
-}
-.logo{color:var(--blue);font-family:'DM Mono';}
-.nav-links{display:flex;gap:1rem;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;}
-.nav-links a.active{color:var(--blue);}
-
-.page-inner{max-width:1100px;margin:auto;padding:4rem 2rem;}
-.hero{padding:6rem 2rem;}
-.hero h1{font-size:3.5rem;margin-bottom:1rem;}
-.hero p{color:var(--muted);margin-bottom:0.5rem;}
-
-.card{background:var(--card);padding:1.5rem;border-radius:10px;margin-bottom:1rem;}
-h2{margin-bottom:2rem;}
-</style>
-</head>
-
-<body>
-
-<nav>
+<!-- NAV -->
 <div class="logo">// PRAVAT_ADHIKARI</div>
-<ul class="nav-links">
-<li><a href="#" class="active" onclick="showPage('home',this)">home</a></li>
-<li><a href="#" onclick="showPage('about',this)">about</a></li>
-<li><a href="#" onclick="showPage('projects',this)">projects</a></li>
-<li><a href="#" onclick="showPage('resume',this)">resume</a></li>
-<li><a href="#" onclick="showPage('contact',this)">contact</a></li>
-</ul>
-</nav>
+
+<a href="https://linkedin.com/in/yourprofile" target="_blank" class="nav-btn nav-btn-ghost">LinkedIn</a>
 
 <!-- HOME -->
-<div id="home" class="page active">
-<div class="hero">
-<p>// DATA ANALYTICS · SOFTWARE DEVELOPMENT · OPEN TO INTERNSHIPS</p>
+<p class="hero-eyebrow">// DATA ANALYTICS · SOFTWARE DEV · AVAILABLE FOR INTERNSHIPS</p>
 
-<h1>
-Turning Raw Data Into <span style="color:#3b82f6;">Business Insights</span>
-</h1>
+<h1 class="hero-h1">Turning Data<br>Into <span class="hl">Decisions.</span></h1>
 
-<p>Data Analyst · Software Developer · Business Intelligence</p>
+<p class="hero-role">Data Analyst · Software Developer · Machine Learning</p>
 
-<p>
-Computer Science student with experience building data pipelines, dashboards,
-and full-stack applications. Skilled in Python, SQL, Tableau, and Power BI
-to transform complex datasets into actionable insights.
+<p class="hero-desc">
+Computer Science student specializing in data analytics and software development. 
+I build dashboards, develop solutions, and turn raw data into actionable insights.
 </p>
 
-<br>
+<!-- SOCIAL LINKS -->
+<a href="https://github.com/adhocpra/adhocpra.github.io/blob/main/index.html" target="_blank" class="social-chip">
+  GitHub
+</a>
 
-<a href="https://www.linkedin.com/in/pravatadhikari/" target="_blank">LinkedIn</a> |
-<a href="https://github.com/adhocpra" target="_blank">GitHub</a> |
-<a href="https://x.com/archivePraX_" target="_blank">Twitter/X</a>
-
-</div>
-</div>
+<a href="https://x.com/archivePraX_" target="_blank" class="social-chip">
+  X / Twitter
+</a>
 
 <!-- ABOUT -->
-<div id="about" class="page">
-<div class="page-inner">
-<h2>About Me</h2>
-
 <p>
-I am a Computer Science student with strong experience in data analytics,
-business intelligence, and software development.
+Hey! I'm <strong>Pravat Adhikari</strong>, a Computer Science student passionate about 
+data analytics, accounting, and software development.
 </p>
 
 <p>
-I’ve worked across the full data stack — from building automated pipelines
-and writing SQL queries to developing dashboards and reporting tools that
-drive real-world decisions.
+I specialize in <span class="accent">data analysis, tutoring, and building practical solutions</span> 
+using Python, SQL, and modern tools.
 </p>
 
-<p>
-Through roles in education, research, and tutoring, I’ve developed the ability
-to convert raw data into clear, actionable insights.
-</p>
+<div class="edu-school">Northern Oklahoma College</div>
+<div class="edu-detail">Computer Science · Expected 2027</div>
 
-<p>
-Currently seeking internships in Data Analytics, Software Devlopment,
-or Business Intelligence.
-</p>
-
-</div>
-</div>
-
-<!-- PROJECTS -->
-<div id="projects" class="page">
-<div class="page-inner">
-<h2>Projects</h2>
-
-<div class="card">
-<h3>Automated Data Pipeline & KPI Dashboard</h3>
-<p>
-Built Python + SQL pipelines and Tableau dashboards for real-time KPI tracking,
-reducing reporting time from hours to minutes.
-</p>
-</div>
-
-<div class="card">
-<h3>Banking Data Analysis & Reporting System</h3>
-<p>
-Analyzed banking datasets using SQL and regression techniques to identify trends,
-detect anomalies, and support decision-making.
-</p>
-</div>
-
-<div class="card">
-<h3>Student Performance Analytics System</h3>
-<p>
-Developed Excel-based tracking system to monitor student progress and deliver
-data-driven insights to improve academic performance.
-</p>
-</div>
-
-</div>
-</div>
-
-<!-- RESUME -->
-<div id="resume" class="page">
-<div class="page-inner">
-
-<h2>Experience</h2>
-
-<div class="card">
-<h3>Mathematics & Accounting Tutor</h3>
-<p>Northern Oklahoma College · Tonkawa, OK · 2024</p>
-<p>
-Delivered tutoring in algebra, calculus, statistics, and accounting.
-Tracked student progress using Excel and improved performance outcomes.
-</p>
-</div>
-
-<div class="card">
-<h3>Research Assistant</h3>
-<p>Global Policy Horizon Research Lab · 2023 – Present</p>
-<p>
-Conducted research, data analysis, and prepared structured analytical reports.
-</p>
-</div>
-
-<div class="card">
-<h3>Junior Data Analyst</h3>
-<p>Nabil Bank Ltd · Nepal · 2021 – 2022</p>
-<p>
-Built automated data pipelines using Python and SQL, developed Tableau dashboards,
-and optimized large-scale queries for business insights.
-</p>
-</div>
-
-<br>
-
-<a href="resume.pdf" download>Download Resume</a>
-
-</div>
+<!-- RESUME EXPERIENCE (REPLACED SECTION) -->
+<div class="res-item">
+  <div class="res-date">2024 —<br>PRESENT</div>
+  <div class="res-content">
+    <div class="res-title">Math & Accounting Tutor</div>
+    <div class="res-sub">Northern Oklahoma College</div>
+    <ul class="res-bullets">
+      <li>Provided one-on-one tutoring in mathematics and accounting courses</li>
+      <li>Helped students improve problem-solving and analytical skills</li>
+      <li>Explained complex concepts in simple, understandable ways</li>
+    </ul>
+  </div>
 </div>
 
 <!-- CONTACT -->
-<div id="contact" class="page">
-<div class="page-inner">
+<a href="mailto:pravatadhikari10@gmail.com" class="contact-link-card">
+  <div class="contact-link-val">pravatadhikari10@gmail.com</div>
+</a>
 
-<h2>Contact</h2>
+<a href="https://x.com/archivePraX_" target="_blank" class="contact-link-card">
+  <div class="contact-link-val">@archivePraX_</div>
+</a>
 
-<p>Email: pravatadhikari10@gmail.com</p>
-<p><a href="https://www.linkedin.com/in/pravatadhikari/">LinkedIn</a></p>
-<p><a href="https://github.com/adhocpra">GitHub</a></p>
-<p><a href="https://x.com/archivePraX_">Twitter/X</a></p>
-
-</div>
-</div>
-
-<footer style="text-align:center;padding:1rem;color:#64748b;">
-// built by <span style="color:#3b82f6;">Pravat Adhikari</span> · 2026
+<!-- FOOTER -->
+<footer>
+  <p>// built by <span>Pravat Adhikari</span> · Data Analytics Portfolio</p>
+  <p>// <span>2026</span> · adhocpra.github.io</p>
 </footer>
-
-<script>
-function showPage(id, link){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-if(link) link.classList.add('active');
-}
-</script>
-
-</body>
-</html>
