@@ -26,6 +26,6 @@ Seeking Entry-Level Data Analyst or Software Engineering roles
 ## 📬 Contact
 
 - 🌐 [Portfolio](https://adhocpra.github.io)
-- 💼 [LinkedIn](https://linkedin.com/in/pravat-adhikari)
+- 💼 [LinkedIn](https://linkedin.com/in/pravatadhikari)
 - 📧 pravatadhikari10@gmail.com
 
