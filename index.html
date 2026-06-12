@@ -1,72 +1,676 @@
-<!-- ONLY SHOWING CHANGED PARTS — your structure stays SAME -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pravat Adhikari — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f5f6f8;
+  --surface:#ffffff;
+  --surface2:#f0f2f5;
+  --border:#e2e5ea;
+  --border2:#d0d5dd;
+  --text:#0f1623;
+  --muted:#6b7280;
+  --hint:#9ca3af;
+  --accent:#0055ff;
+  --accent-bg:#eff4ff;
+  --accent-border:#c7d7fd;
+  --green:#059669;
+  --green-bg:#ecfdf5;
+  --amber:#d97706;
+  --amber-bg:#fffbeb;
+  --purple:#7c3aed;
+  --purple-bg:#f5f3ff;
+  --display:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--display);font-size:15px;line-height:1.6;}
 
-<title>Pravat Adhikari | Data Analytics Portfolio</title>
+/* ── TOPBAR ── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:52px;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;
+}
+.topbar-left{display:flex;align-items:center;gap:1.5rem;}
+.topbar-brand{
+  font-family:var(--mono);font-size:0.82rem;font-weight:500;
+  color:var(--accent);letter-spacing:0.02em;
+}
+.topbar-status{
+  display:flex;align-items:center;gap:0.4rem;
+  font-size:0.72rem;color:var(--green);font-weight:500;
+}
+.topbar-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.topbar-nav{display:flex;gap:0.25rem;}
+.topbar-nav a{
+  font-size:0.78rem;font-weight:500;color:var(--muted);
+  text-decoration:none;padding:0.3rem 0.75rem;border-radius:6px;
+  transition:background 0.15s,color 0.15s;
+}
+.topbar-nav a:hover{background:var(--surface2);color:var(--text);}
+.topbar-right{display:flex;align-items:center;gap:0.75rem;}
+.btn-resume{
+  font-size:0.78rem;font-weight:600;
+  background:var(--accent);color:#fff;
+  padding:0.4rem 1rem;border-radius:6px;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:opacity 0.15s;
+}
+.btn-resume:hover{opacity:0.88;}
 
-<!-- NAV -->
-<div class="logo">// PRAVAT_ADHIKARI</div>
+/* ── LAYOUT ── */
+.page{max-width:1140px;margin:0 auto;padding:72px 2rem 4rem;}
 
-<a href="https://www.linkedin.com/in/pravatadhikari/" target="_blank" class="nav-btn nav-btn-ghost">LinkedIn</a>
+/* ── HERO ROW ── */
+.hero{
+  display:grid;grid-template-columns:1fr 340px;
+  gap:2rem;align-items:start;
+  padding:2.5rem 0 2rem;
+  border-bottom:1px solid var(--border);
+  margin-bottom:2rem;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:0.72rem;font-weight:500;
+  color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;
+  margin-bottom:0.75rem;
+}
+.hero-name{
+  font-size:clamp(2rem,4vw,3rem);font-weight:600;
+  line-height:1.1;letter-spacing:-0.03em;
+  color:var(--text);margin-bottom:0.75rem;
+}
+.hero-title{
+  font-size:1rem;color:var(--muted);font-weight:400;
+  margin-bottom:1.25rem;max-width:480px;
+}
+.hero-socials{display:flex;gap:0.6rem;flex-wrap:wrap;}
+.social-btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-size:0.75rem;font-weight:500;
+  border:1px solid var(--border2);color:var(--muted);
+  padding:0.35rem 0.8rem;border-radius:6px;
+  text-decoration:none;background:var(--surface);
+  transition:border-color 0.15s,color 0.15s;
+}
+.social-btn:hover{border-color:var(--accent);color:var(--accent);}
+.hero-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.kpi-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:1rem 1.1rem;
+}
+.kpi-val{
+  font-family:var(--mono);font-size:1.5rem;font-weight:500;
+  color:var(--text);line-height:1;margin-bottom:0.3rem;
+}
+.kpi-val.accent{color:var(--accent);}
+.kpi-val.green{color:var(--green);}
+.kpi-label{font-size:0.7rem;color:var(--hint);font-weight:500;text-transform:uppercase;letter-spacing:0.05em;}
 
-<!-- HOME -->
-<p class="hero-eyebrow">// DATA ANALYTICS · SOFTWARE DEV · AVAILABLE FOR INTERNSHIPS</p>
+/* ── GRID LAYOUT ── */
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:1.5rem;align-items:start;
+}
+.sidebar{display:flex;flex-direction:column;gap:1rem;}
+.main-col{display:flex;flex-direction:column;gap:1.5rem;}
 
-<h1 class="hero-h1">Turning Data<br>Into <span class="hl">Decisions.</span></h1>
+/* ── PANEL ── */
+.panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+}
+.panel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 1.25rem;
+  border-bottom:1px solid var(--border);
+  background:var(--surface2);
+}
+.panel-title{
+  font-size:0.72rem;font-weight:600;
+  color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;
+}
+.panel-tag{
+  font-family:var(--mono);font-size:0.65rem;font-weight:500;
+  background:var(--accent-bg);color:var(--accent);
+  border:1px solid var(--accent-border);
+  padding:0.15rem 0.5rem;border-radius:4px;
+}
+.panel-body{padding:1.25rem;}
 
-<p class="hero-role">Data Analyst · Software Developer · Machine Learning</p>
+/* ── ABOUT ── */
+.about-text{font-size:0.875rem;color:var(--muted);line-height:1.75;}
+.about-text p{margin-bottom:0.75rem;}
+.about-text strong{color:var(--text);}
 
-<p class="hero-desc">
-Computer Science student specializing in data analytics and software development. 
-I build dashboards, develop solutions, and turn raw data into actionable insights.
-</p>
+/* ── SKILLS ── */
+.skill-group{margin-bottom:1.1rem;}
+.skill-group:last-child{margin-bottom:0;}
+.skill-group-label{
+  font-size:0.67rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--hint);
+  margin-bottom:0.5rem;
+}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.stag{
+  font-size:0.72rem;font-weight:500;
+  padding:0.25rem 0.65rem;border-radius:5px;
+  border:1px solid;
+}
+.stag.blue{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border);}
+.stag.green{background:var(--green-bg);color:var(--green);border-color:#a7f3d0;}
+.stag.amber{background:var(--amber-bg);color:var(--amber);border-color:#fde68a;}
+.stag.purple{background:var(--purple-bg);color:var(--purple);border-color:#ddd6fe;}
+.stag.gray{background:var(--surface2);color:var(--muted);border-color:var(--border2);}
 
-<!-- SOCIAL LINKS -->
-<a href="https://github.com/adhocpra/adhocpra.github.io/blob/main/index.html" target="_blank" class="social-chip">
-  GitHub
-</a>
+/* ── SIDEBAR NAV ── */
+.snav{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+}
+.snav-item{
+  display:block;
+  font-size:0.78rem;font-weight:500;color:var(--muted);
+  padding:0.65rem 1rem;text-decoration:none;
+  border-bottom:1px solid var(--border);
+  transition:background 0.12s,color 0.12s;
+}
+.snav-item:last-child{border-bottom:none;}
+.snav-item:hover{background:var(--surface2);color:var(--text);}
+.snav-item.active{background:var(--accent-bg);color:var(--accent);}
 
-<a href="https://x.com/archivePraX_" target="_blank" class="social-chip">
-  X / Twitter
-</a>
+/* ── SIDEBAR INFO ── */
+.info-row{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.75rem;padding:0.45rem 0;
+  border-bottom:1px solid var(--border);
+}
+.info-row:last-child{border-bottom:none;}
+.info-key{color:var(--hint);font-weight:500;}
+.info-val{color:var(--text);font-weight:500;text-align:right;}
 
-<!-- ABOUT -->
-<p>
-Hey! I'm <strong>Pravat Adhikari</strong>, a Computer Science student passionate about 
-data analytics, accounting, and software development.
-</p>
+/* ── PROJECTS ── */
+.projects-list{display:flex;flex-direction:column;gap:1rem;}
+.project-row{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:1.1rem 1.25rem;
+  display:grid;grid-template-columns:1fr auto;
+  gap:1rem;align-items:start;
+  transition:border-color 0.15s;
+}
+.project-row:hover{border-color:var(--accent);}
+.proj-name{
+  font-size:0.875rem;font-weight:600;color:var(--text);
+  margin-bottom:0.3rem;
+}
+.proj-desc{font-size:0.78rem;color:var(--muted);margin-bottom:0.6rem;line-height:1.55;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.ptag{
+  font-size:0.67rem;font-weight:500;
+  background:var(--surface);color:var(--muted);
+  border:1px solid var(--border2);
+  padding:0.15rem 0.5rem;border-radius:4px;
+}
+.proj-link{
+  font-size:0.72rem;font-weight:600;color:var(--accent);
+  text-decoration:none;white-space:nowrap;
+  border:1px solid var(--accent-border);
+  background:var(--accent-bg);
+  padding:0.35rem 0.75rem;border-radius:6px;
+  transition:background 0.15s;
+}
+.proj-link:hover{background:#dbeafe;}
 
-<p>
-I specialize in <span class="accent">data analysis, tutoring, and building practical solutions</span> 
-using Python, SQL, and modern tools.
-</p>
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp-item{
+  display:grid;grid-template-columns:110px 1fr;
+  gap:0 1.25rem;
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--border);
+}
+.exp-item:last-child{border-bottom:none;}
+.exp-date{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--hint);font-weight:500;
+  padding-top:0.15rem;line-height:1.4;
+}
+.exp-role{
+  font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:0.15rem;
+}
+.exp-company{
+  font-size:0.78rem;color:var(--accent);font-weight:500;margin-bottom:0.5rem;
+}
+.exp-bullets{list-style:none;padding:0;}
+.exp-bullets li{
+  font-size:0.78rem;color:var(--muted);
+  padding-left:0.85rem;position:relative;margin-bottom:0.2rem;line-height:1.55;
+}
+.exp-bullets li::before{content:'–';position:absolute;left:0;color:var(--hint);}
 
-<div class="edu-school">Northwestern Oklahoma State University</div>
-<div class="edu-detail">Computer Science · Expected 2027</div>
+/* ── EDUCATION ── */
+.edu-row{
+  display:grid;grid-template-columns:110px 1fr;
+  gap:0 1.25rem;padding:1rem 0;
+  border-bottom:1px solid var(--border);
+}
+.edu-row:last-child{border-bottom:none;}
+.edu-date{font-family:var(--mono);font-size:0.68rem;color:var(--hint);font-weight:500;padding-top:0.15rem;}
+.edu-school{font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:0.15rem;}
+.edu-degree{font-size:0.78rem;color:var(--muted);margin-bottom:0.4rem;}
+.edu-badge{
+  display:inline-block;font-size:0.68rem;font-weight:600;
+  background:var(--green-bg);color:var(--green);
+  border:1px solid #a7f3d0;padding:0.15rem 0.5rem;border-radius:4px;
+}
 
-<!-- RESUME EXPERIENCE (REPLACED SECTION) -->
-<div class="res-item">
-  <div class="res-date">2024 —<br>PRESENT</div>
-  <div class="res-content">
-    <div class="res-title">Math & Accounting Tutor</div>
-    <div class="res-sub">Northern Oklahoma College</div>
-    <ul class="res-bullets">
-      <li>Provided one-on-one tutoring in mathematics and accounting courses</li>
-      <li>Helped students improve problem-solving and analytical skills</li>
-      <li>Explained complex concepts in simple, understandable ways</li>
-    </ul>
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.contact-card{
+  display:flex;align-items:center;gap:0.75rem;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:1rem 1.1rem;
+  text-decoration:none;color:var(--text);
+  transition:border-color 0.15s,background 0.15s;
+}
+.contact-card:hover{border-color:var(--accent);background:var(--accent-bg);}
+.cc-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.875rem;flex-shrink:0;
+}
+.cc-label{font-size:0.75rem;color:var(--muted);margin-bottom:0.1rem;}
+.cc-val{font-size:0.8rem;font-weight:600;color:var(--text);}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:2rem;margin-top:2rem;
+  font-family:var(--mono);font-size:0.7rem;color:var(--hint);
+  border-top:1px solid var(--border);
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-kpi-grid{display:none;}
+  .dashboard-grid{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .topbar-nav{display:none;}
+  .page{padding:60px 1rem 3rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-brand">pravat.adhikari</span>
+    <span class="topbar-status">Available for hire</span>
+  </div>
+  <nav class="topbar-nav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="#" class="btn-resume">↓ Resume</a>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div>
+      <div class="hero-eyebrow">Data Analyst · Software Engineer</div>
+      <h1 class="hero-name">Pravat Adhikari</h1>
+      <p class="hero-title">CS Senior at Northwestern Oklahoma State University. I build data pipelines, financial models, and analytics tools. Open to full-time roles in data analytics and software engineering.</p>
+      <div class="hero-socials">
+        <a href="https://github.com/adhocpra" class="social-btn" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/pravat-adhikari" class="social-btn" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:pravat@email.com" class="social-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a href="https://twitter.com/adhocpra" class="social-btn" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter / X
+        </a>
+      </div>
+    </div>
+    <div class="hero-kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-val accent">3.96</div>
+        <div class="kpi-label">GPA</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val green">Fall '26</div>
+        <div class="kpi-label">Graduation</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">3+</div>
+        <div class="kpi-label">Yrs experience</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val">5+</div>
+        <div class="kpi-label">Projects</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD GRID -->
+  <div class="dashboard-grid">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <nav class="snav">
+        <a href="#about" class="snav-item active">About</a>
+        <a href="#skills" class="snav-item">Skills</a>
+        <a href="#projects" class="snav-item">Projects</a>
+        <a href="#experience" class="snav-item">Experience</a>
+        <a href="#education" class="snav-item">Education</a>
+        <a href="#contact" class="snav-item">Contact</a>
+      </nav>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Quick info</span>
+        </div>
+        <div class="panel-body" style="padding:0.75rem 1rem;">
+          <div class="info-row"><span class="info-key">Location</span><span class="info-val">Alva, OK</span></div>
+          <div class="info-row"><span class="info-key">Degree</span><span class="info-val">B.S. CS</span></div>
+          <div class="info-row"><span class="info-key">Minor</span><span class="info-val">Accounting</span></div>
+          <div class="info-row"><span class="info-key">Status</span><span class="info-val" style="color:var(--green)">Open to work</span></div>
+          <div class="info-row"><span class="info-key">Focus</span><span class="info-val">Data Analytics</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-col">
+
+      <!-- ABOUT -->
+      <div class="panel" id="about">
+        <div class="panel-header">
+          <span class="panel-title">About</span>
+          <span class="panel-tag">profile.md</span>
+        </div>
+        <div class="panel-body">
+          <div class="about-text">
+            <p>I'm a <strong>Computer Science senior with an Accounting minor</strong> at Northwestern Oklahoma State University, graduating Fall 2026 with a 3.96 GPA. My work sits at the intersection of data, finance, and software.</p>
+            <p>My background spans <strong>academic tutoring </strong> in the US, software and financial operations, and academic research at a global policy lab. I bring both technical and financial literacy to data problems — a combination most pure CS graduates don't have.</p>
+            <p>I'm actively building skills in <strong>Python, pandas, SQL, and data visualization</strong>, and exploring cloud-based data tools like AWS. I'm seeking entry-level Data Analyst or Software Engineering roles where I can contribute immediately.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="panel" id="skills">
+        <div class="panel-header">
+          <span class="panel-title">Skills & tools</span>
+          <span class="panel-tag">skills.json</span>
+        </div>
+        <div class="panel-body">
+          <div class="skill-group">
+            <div class="skill-group-label">Languages</div>
+            <div class="skill-tags">
+              <span class="stag blue">Python</span>
+              <span class="stag blue">SQL</span>
+              <span class="stag blue">Bash</span>
+              <span class="stag blue">PowerShell</span>
+              <span class="stag blue">HTML / CSS</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Data & analytics</div>
+            <div class="skill-tags">
+              <span class="stag green">Pandas</span>
+              <span class="stag green">Matplotlib</span>
+              <span class="stag green">NumPy</span>
+              <span class="stag green">MySQL</span>
+              <span class="stag green">Data Cleaning</span>
+              <span class="stag green">EDA</span>
+               <span class="stag green">Tableau</span>
+              <span class="stag green">Excel (Advanced)</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Financial analysis</div>
+            <div class="skill-tags">
+              <span class="stag amber">Financial Modelling</span>
+              <span class="stag amber">Ratio Analysis</span>
+              <span class="stag amber">Cash Flow Analysis</span>
+              <span class="stag amber">Financial Reporting</span>
+              <span class="stag amber">Accounting Principles</span>
+              <span class="stag amber">Fintech Data Analysis</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Project management</div>
+            <div class="skill-tags">
+              <span class="stag purple">Agile</span>
+              <span class="stag purple">Waterfall</span>
+              <span class="stag purple">Git / GitHub</span>
+              <span class="stag purple">VSCode</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Cloud familiarity</div>
+            <div class="skill-tags">
+              <span class="stag gray">AWS (S3, EC2)</span>
+              <span class="stag gray">Google Cloud</span>
+              <span class="stag gray">GitHub Pages</span>
+              <span class="stag gray">Linux / Ubuntu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="panel" id="projects">
+        <div class="panel-header">
+          <span class="panel-title">Projects</span>
+          <span class="panel-tag">4 repos</span>
+        </div>
+        <div class="panel-body">
+          <div class="projects-list">
+
+            <div class="project-row">
+              <div>
+                <div class="proj-name">Expense Tracker</div>
+                <div class="proj-desc">CLI-based personal finance tracker using OOP, CSV persistence, and matplotlib. Tracks spending by category, generates monthly summaries, and plots trends.</div>
+                <div class="proj-tags">
+                  <span class="ptag">Python</span><span class="ptag">OOP</span><span class="ptag">Matplotlib</span><span class="ptag">CSV</span><span class="ptag">Finance</span>
+                </div>
+              </div>
+              <a href="https://github.com/adhocpra" class="proj-link" target="_blank">View →</a>
+            </div>
+
+            <div class="project-row">
+              <div>
+                <div class="proj-name">Pandas Data Analysis</div>
+                <div class="proj-desc">Structured data analytics scripts covering cleaning, filtering, groupby, merging, pivot tables, and visualization. Built along a data analytics learning roadmap.</div>
+                <div class="proj-tags">
+                  <span class="ptag">Python</span><span class="ptag">Pandas</span><span class="ptag">EDA</span><span class="ptag">Data Cleaning</span>
+                </div>
+              </div>
+              <a href="https://github.com/adhocpra/Python_Intermediate" class="proj-link" target="_blank">View →</a>
+            </div>
+
+            <div class="project-row">
+              <div>
+                <div class="proj-name">MySQL Practice</div>
+                <div class="proj-desc">SQL exercises from basics through window functions, joins, transactions, and schema design. Includes a complete SQL reference document and debugging notes.</div>
+                <div class="proj-tags">
+                  <span class="ptag">MySQL</span><span class="ptag">SQL</span><span class="ptag">Schema Design</span><span class="ptag">Window Functions</span>
+                </div>
+              </div>
+              <a href="https://github.com/adhocpra/MySQL_Practice" class="proj-link" target="_blank">View →</a>
+            </div>
+
+            <div class="project-row">
+              <div>
+                <div class="proj-name">DSA in Python</div>
+                <div class="proj-desc">Data structures and algorithms implemented in Python with a data science orientation — arrays, dictionaries, sorting, binary search, and linear search.</div>
+                <div class="proj-tags">
+                  <span class="ptag">Python</span><span class="ptag">DSA</span><span class="ptag">Algorithms</span><span class="ptag">Data Structures</span>
+                </div>
+              </div>
+              <a href="https://github.com/adhocpra/DSA-Python" class="proj-link" target="_blank">View →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="panel" id="experience">
+        <div class="panel-header">
+          <span class="panel-title">Experience</span>
+          <span class="panel-tag">work_history.csv</span>
+        </div>
+        <div class="panel-body" style="padding:0.5rem 1.25rem;">
+          <div class="exp-list">
+
+            <div class="exp-item">
+              <div class="exp-date">Kathmandu<br>Nepal</div>
+              <div>
+                <div class="exp-role">Fintech Data Analyst Intern</div>
+                <div class="exp-company">Nabil Bank Ltd</div>
+                <ul class="exp-bullets">
+                  <li>Analyzed financial transaction data to surface trends, anomalies, and reporting insights</li>
+                  <li>Built Excel dashboards and financial reports for internal stakeholders</li>
+                  <li>Performed data quality checks, reconciliation, and cash flow analysis</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">Nepal</div>
+              <div>
+                <div class="exp-role">Software & Financial Operations</div>
+                <div class="exp-company">SD Miracle Edu Consultancy</div>
+                <ul class="exp-bullets">
+                  <li>Managed software tools and maintained financial records</li>
+                  <li>Automated reporting workflows using scripting, reducing manual effort</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">Remote</div>
+              <div>
+                <div class="exp-role">Research Assistant</div>
+                <div class="exp-company">Global Policy Horizon Research Lab</div>
+                <ul class="exp-bullets">
+                  <li>Collected and analyzed quantitative data for policy research projects</li>
+                  <li>Prepared structured reports from datasets for research publication</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-date">OK</div>
+              <div>
+                <div class="exp-role">Academic Tutor — Math & Accounting</div>
+                <div class="exp-company">Northwestern Oklahoma State University</div>
+                <ul class="exp-bullets">
+                  <li>Tutored undergraduate students in mathematics and accounting coursework</li>
+                  <li>Developed structured lesson plans to improve student performance</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="panel" id="education">
+        <div class="panel-header">
+          <span class="panel-title">Education</span>
+          <span class="panel-tag">education.json</span>
+        </div>
+        <div class="panel-body" style="padding:0.5rem 1.25rem;">
+          <div class="edu-row">
+            <div class="edu-date">2022 –<br>Fall 2026</div>
+            <div>
+              <div class="edu-school">Northwestern Oklahoma State University</div>
+              <div class="edu-degree">B.S. Computer Science · Accounting Minor · Alva, Oklahoma</div>
+              <span class="edu-badge">GPA: 3.96</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="panel" id="contact">
+        <div class="panel-header">
+          <span class="panel-title">Contact</span>
+          <span class="panel-tag">open to work</span>
+        </div>
+        <div class="panel-body">
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;">Actively looking for internship and entry-level Data Analyst or Software Engineering roles. Let's connect.</p>
+          <div class="contact-grid">
+            <a href="https://github.com/adhocpra" class="contact-card" target="_blank">
+              <div class="cc-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </div>
+              <div><div class="cc-label">GitHub</div><div class="cc-val">adhocpra</div></div>
+            </a>
+            <a href="https://linkedin.com/in/pravat-adhikari" class="contact-card" target="_blank">
+              <div class="cc-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <div><div class="cc-label">LinkedIn</div><div class="cc-val">pravatadhikari</div></div>
+            </a>
+            <a href="mailto:pravatadhikari10@gmail.com" class="contact-card">
+              <div class="cc-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div><div class="cc-label">Email</div><div class="cc-val">pravatadhikari10@gmail.com</div></div>
+            </a>
+            <a href="https://twitter.com/BasantPravat" class="contact-card" target="_blank">
+              <div class="cc-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </div>
+              <div><div class="cc-label">Twitter / X</div><div class="cc-val">@BasantPravat</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </main>
   </div>
 </div>
 
-<!-- CONTACT -->
-<a href="mailto:pravatadhikari10@gmail.com" class="contact-link-card">
-  <div class="contact-link-val">pravatadhikari10@gmail.com</div>
-</a>
-
-<a href="https://x.com/archivePraX_" target="_blank" class="contact-link-card">
-  <div class="contact-link-val">@archivePraX_</div>
-</a>
-
-<!-- FOOTER -->
 <footer>
-  <p>// built by <span>Pravat Adhikari</span> · Data Analytics Portfolio</p>
-  <p>// <span>2026</span> · adhocpra.github.io</p>
+  pravat.adhikari · built with HTML/CSS · 2026
 </footer>
+
+</body>
+</html>
