@@ -6,6 +6,7 @@
 <title>Pravat Adhikari - Data Analyst and Software Engineer</title>
 <meta name="description" content="CS Senior at Northwestern Oklahoma State. Data pipelines, financial models, analytics tools.">
 <link href="index_files/css2.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{--bg:#f5f6f8;--surface:#fff;--surface2:#f0f2f5;--border:#e2e5ea;--border2:#d0d5dd;--text:#0f1623;--muted:#6b7280;--hint:#9ca3af;--accent:#0055ff;--accent-bg:#eff4ff;--accent-border:#c7d7fd;--green:#059669;--green-bg:#ecfdf5;--amber:#d97706;--amber-bg:#fffbeb;--purple:#7c3aed;--purple-bg:#f5f3ff;--display:'DM Sans',sans-serif;--mono:'DM Mono',monospace;}
@@ -116,7 +117,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--display);font-size
 #back-to-top.visible{opacity:1;transform:translateY(0);}
 #back-to-top:hover{border-color:var(--accent);color:var(--accent);}
 footer{text-align:center;padding:2rem;margin-top:2rem;font-family:var(--mono);font-size:.7rem;color:var(--hint);border-top:1px solid var(--border);}
-@media(max-width:900px){.hero{grid-template-columns:1fr;}.hero-kpi-grid,.sidebar{display:none;}.dashboard-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;}}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.chart-wrap{position:relative;}
+.chart-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--hint);margin-bottom:.75rem;}
+.chart-container{position:relative;height:240px;}
+.proj-loading{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:2.5rem;color:var(--hint);font-size:.8rem;}
+.proj-loading::before{content:'';width:14px;height:14px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.proj-live{font-family:var(--mono);font-size:.62rem;font-weight:500;background:var(--green-bg);color:var(--green);border:1px solid #a7f3d0;padding:.1rem .45rem;border-radius:4px;margin-left:.5rem;vertical-align:middle;}
+.proj-count{font-family:var(--mono);font-size:.65rem;font-weight:500;background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);padding:.15rem .5rem;border-radius:4px;}
+@media(max-width:900px){.hero{grid-template-columns:1fr;}.hero-kpi-grid,.sidebar{display:none;}.dashboard-grid{grid-template-columns:1fr;}.contact-grid{grid-template-columns:1fr;}.charts-grid{grid-template-columns:1fr;}}
 @media(max-width:600px){.topbar-nav{display:none;}.page{padding:60px 1rem 3rem;}}
 </style>
 </head>
@@ -128,7 +138,7 @@ footer{text-align:center;padding:2rem;margin-top:2rem;font-family:var(--mono);fo
     <span class="topbar-status">Available for hire</span>
   </div>
   <nav class="topbar-nav" id="topbar-nav">
-    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#analytics">Analytics</a><a href="#projects">Projects</a>
     <a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a>
   </nav>
   <div class="topbar-right">
@@ -161,6 +171,7 @@ footer{text-align:center;padding:2rem;margin-top:2rem;font-family:var(--mono);fo
       <nav class="snav" id="sidebar-nav">
         <a href="#about" class="snav-item active">About</a>
         <a href="#skills" class="snav-item">Skills</a>
+        <a href="#analytics" class="snav-item">Analytics</a>
         <a href="#projects" class="snav-item">Projects</a>
         <a href="#experience" class="snav-item">Experience</a>
         <a href="#education" class="snav-item">Education</a>
@@ -200,15 +211,24 @@ footer{text-align:center;padding:2rem;margin-top:2rem;font-family:var(--mono);fo
           </div>
         </div>
       </div>
+      <div class="panel fade-in" id="analytics">
+        <div class="panel-header"><span class="panel-title">Skill Analytics</span><span class="panel-tag">charts.js</span></div>
+        <div class="panel-body">
+          <div class="charts-grid">
+            <div class="chart-wrap">
+              <div class="chart-label">Proficiency Radar</div>
+              <div class="chart-container"><canvas id="radarChart"></canvas></div>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-label">Tech Stack Strength</div>
+              <div class="chart-container"><canvas id="barChart"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="panel fade-in" id="projects">
-        <div class="panel-header"><span class="panel-title">Projects</span><span class="panel-tag">5 repos</span></div>
-        <div class="panel-body"><div class="projects-list">
-          <div class="project-row"><div><div class="proj-name">Brazil vs Morocco &mdash; WC 2026 Match Analysis</div><div class="proj-desc">Complete data analysis of the Brazil 2&ndash;1 Morocco FIFA World Cup 2026 group stage match. 6 visualizations covering match dashboard, shooting analysis, player ratings, match timeline, head-to-head stats, and top performers. Built with Pandas and Matplotlib.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Pandas</span><span class="ptag">Matplotlib</span><span class="ptag">EDA</span><span class="ptag">Football</span><span class="ptag">WC2026</span></div></div><a href="https://github.com/adhocpra/wc2026-match-analysis" class="proj-link" target="_blank">View &rarr;</a></div>
-          <div class="project-row"><div><div class="proj-name">Python Forge &mdash; OOP &amp; Data Science</div><div class="proj-desc">Structured Python repo covering full OOP in progression (Basics &rarr; Abstraction &rarr; Inheritance &rarr; Encapsulation &rarr; Polymorphism &rarr; Composition &rarr; Magic Methods &rarr; Getters/Setters) plus data science with Pandas and Matplotlib, including Titanic dataset analysis.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">OOP</span><span class="ptag">Pandas</span><span class="ptag">Matplotlib</span><span class="ptag">EDA</span></div></div><a href="https://github.com/adhocpra/python-forge" class="proj-link" target="_blank">View &rarr;</a></div>
-          <div class="project-row"><div><div class="proj-name">SQL Craft &mdash; MySQL Practice</div><div class="proj-desc">Structured SQL from table design through advanced analytical queries. Covers DDL, DML, joins, subqueries, and complex multi-table operations with real-world schemas.</div><div class="proj-tags"><span class="ptag">MySQL</span><span class="ptag">SQL</span><span class="ptag">Schema Design</span><span class="ptag">Joins</span><span class="ptag">Subqueries</span></div></div><a href="https://github.com/adhocpra/sql-craft" class="proj-link" target="_blank">View &rarr;</a></div>
-          <div class="project-row"><div><div class="proj-name">Python DSA &mdash; Algorithms &amp; Data Structures</div><div class="proj-desc">Core data structures and algorithms implemented from scratch in Python &mdash; arrays, dictionaries, linear search, binary search, and sorting, organized by topic for clear reference.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">DSA</span><span class="ptag">Algorithms</span><span class="ptag">Sorting</span><span class="ptag">Searching</span></div></div><a href="https://github.com/adhocpra/python-dsa" class="proj-link" target="_blank">View &rarr;</a></div>
-          <div class="project-row"><div><div class="proj-name">Expense Tracker &mdash; CLI Finance Tool</div><div class="proj-desc">Command-line personal finance tracker built with OOP, CSV persistence, and matplotlib. Tracks spending by category, generates monthly summaries, and visualizes trends over time.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">OOP</span><span class="ptag">Matplotlib</span><span class="ptag">CSV</span><span class="ptag">Finance</span></div></div><a href="https://github.com/adhocpra" class="proj-link" target="_blank">View &rarr;</a></div>
-        </div></div>
+        <div class="panel-header"><span class="panel-title">Projects</span><span id="proj-count" class="proj-count">loading...</span></div>
+        <div class="panel-body"><div class="projects-list" id="projects-list"><div class="proj-loading">Fetching repos from GitHub&hellip;</div></div></div>
       </div>
       <div class="panel fade-in" id="experience">
         <div class="panel-header"><span class="panel-title">Experience</span><span class="panel-tag">work_history.csv</span></div>
@@ -244,6 +264,7 @@ footer{text-align:center;padding:2rem;margin-top:2rem;font-family:var(--mono);fo
 <a href="#top" id="back-to-top" title="Back to top">&#8593;</a>
 <div class="toast" id="toast"></div>
 <script>
+/* ── scroll / topbar ── */
 const bar=document.getElementById('scroll-progress');
 const topbar=document.getElementById('topbar');
 const btt=document.getElementById('back-to-top');
@@ -253,6 +274,8 @@ window.addEventListener('scroll',()=>{
   topbar.classList.toggle('scrolled',window.scrollY>10);
   btt.classList.toggle('visible',window.scrollY>400);
 },{passive:true});
+
+/* ── typewriter ── */
 const roles=['Data Analyst','Software Engineer','Python Developer','Fintech Analyst'];
 let ri=0,ci=0,del=false;
 const tel=document.getElementById('typed');
@@ -265,6 +288,8 @@ function type(){
   setTimeout(type,d);
 }
 setTimeout(type,600);
+
+/* ── KPI counters ── */
 document.querySelectorAll('[data-target]').forEach(el=>{
   const tgt=parseFloat(el.dataset.target),dec=parseInt(el.dataset.decimals||0),sfx=el.dataset.suffix||'';
   const t0=performance.now();
@@ -274,8 +299,12 @@ document.querySelectorAll('[data-target]').forEach(el=>{
     if(p<1)requestAnimationFrame(step);
   })(performance.now());
 });
+
+/* ── fade-in on scroll ── */
 const fo=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');fo.unobserve(e.target);}});},{threshold:.08});
 document.querySelectorAll('.fade-in').forEach(el=>fo.observe(el));
+
+/* ── active nav tracking ── */
 const tl=document.querySelectorAll('#topbar-nav a');
 const sl=document.querySelectorAll('#sidebar-nav .snav-item');
 function setA(id){
@@ -283,9 +312,140 @@ function setA(id){
   sl.forEach(a=>a.classList.toggle('active',a.getAttribute('href')=='#'+id));
 }
 const so=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)setA(e.target.id);});},{rootMargin:'-40% 0px -55% 0px'});
-['about','skills','projects','experience','education','contact'].forEach(id=>{const el=document.getElementById(id);if(el)so.observe(el);});
+['about','skills','analytics','projects','experience','education','contact'].forEach(id=>{const el=document.getElementById(id);if(el)so.observe(el);});
+
+/* ── toast / email ── */
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 ['email-card','email-btn'].forEach(id=>{document.getElementById(id).addEventListener('click',e=>{e.preventDefault();navigator.clipboard.writeText('pravatadhikari10@gmail.com').then(()=>showToast('Email copied!')).catch(()=>showToast('pravatadhikari10@gmail.com'));});});
+
+/* ── Chart.js: render on first scroll into view ── */
+let chartsBuilt=false;
+const RADAR_COLOR='rgba(0,85,255,0.14)';
+const ACCENT='#0055ff';
+function buildCharts(){
+  if(chartsBuilt)return;
+  chartsBuilt=true;
+
+  new Chart(document.getElementById('radarChart'),{
+    type:'radar',
+    data:{
+      labels:['Python','SQL & DBs','Data Analysis','Financial Literacy','Algorithms & DSA','Cloud & DevOps'],
+      datasets:[{
+        label:'Proficiency',
+        data:[90,82,88,85,72,60],
+        backgroundColor:RADAR_COLOR,
+        borderColor:ACCENT,
+        pointBackgroundColor:ACCENT,
+        pointBorderColor:'#fff',
+        pointRadius:5,
+        borderWidth:2
+      }]
+    },
+    options:{
+      animation:{duration:1400,easing:'easeOutQuart'},
+      scales:{r:{min:0,max:100,ticks:{stepSize:25,display:false,backdropColor:'transparent'},grid:{color:'rgba(0,0,0,0.07)'},angleLines:{color:'rgba(0,0,0,0.07)'},pointLabels:{font:{size:11,family:'DM Sans,sans-serif'},color:'#6b7280'}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}%`}}}
+    }
+  });
+
+  new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{
+      labels:['Python','Git & GitHub','Pandas / NumPy','SQL / MySQL','Matplotlib','Excel Advanced','Bash / CLI','HTML / CSS / JS'],
+      datasets:[{
+        label:'Strength',
+        data:[90,88,85,82,78,80,70,65],
+        backgroundColor:['#0055ff','#7c3aed','#3b82f6','#059669','#10b981','#d97706','#6b7280','#94a3b8'],
+        borderRadius:6,
+        borderSkipped:false
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      animation:{duration:1600,easing:'easeOutQuart',delay:ctx=>ctx.dataIndex*60},
+      scales:{
+        x:{min:0,max:100,display:false,grid:{display:false}},
+        y:{grid:{display:false},ticks:{font:{size:11,family:'DM Sans,sans-serif'},color:'#6b7280'}}
+      },
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}%`}}}
+    }
+  });
+}
+
+const chartObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){buildCharts();chartObs.disconnect();}});},{threshold:.1});
+const analyticsEl=document.getElementById('analytics');
+if(analyticsEl)chartObs.observe(analyticsEl);
+
+/* ── GitHub API: live project feed ── */
+const REPO_META={
+  'wc2026-match-analysis':{
+    name:'Brazil vs Morocco &mdash; WC 2026 Match Analysis',
+    desc:'Complete data analysis of the Brazil 2&ndash;1 Morocco FIFA World Cup 2026 group stage match. 6 visualizations: match dashboard, shooting analysis, player ratings, match timeline, head-to-head, top performers.',
+    tags:['Python','Pandas','Matplotlib','EDA','Football','WC2026']
+  },
+  'python-forge':{
+    name:'Python Forge &mdash; OOP &amp; Data Science',
+    desc:'Structured Python covering full OOP progression (Basics &rarr; Abstraction &rarr; Inheritance &rarr; Encapsulation &rarr; Polymorphism &rarr; Composition &rarr; Magic Methods &rarr; Getters/Setters) plus Pandas and Matplotlib data science.',
+    tags:['Python','OOP','Pandas','Matplotlib','EDA']
+  },
+  'sql-craft':{
+    name:'SQL Craft &mdash; MySQL Practice',
+    desc:'Structured SQL from table design through advanced analytical queries. DDL, DML, joins, subqueries, and complex multi-table operations with real-world schemas.',
+    tags:['MySQL','SQL','Schema Design','Joins','Subqueries']
+  },
+  'python-dsa':{
+    name:'Python DSA &mdash; Algorithms &amp; Data Structures',
+    desc:'Core data structures and algorithms implemented from scratch in Python: arrays, dictionaries, linear search, binary search, and sorting, organized by topic.',
+    tags:['Python','DSA','Algorithms','Sorting','Searching']
+  },
+  'adhocpra.github.io':{
+    name:'Portfolio &mdash; adhocpra.github.io',
+    desc:'Personal portfolio built with vanilla HTML/CSS/JS. Features live GitHub project feed, animated Chart.js skill analytics, typewriter effect, IntersectionObserver fade-ins, and GitHub Pages deployment.',
+    tags:['HTML','CSS','JavaScript','Chart.js','GitHub Pages']
+  }
+};
+
+function langColor(lang){
+  const m={'Python':'#3b82f6','JavaScript':'#f59e0b','HTML':'#f97316','CSS':'#8b5cf6','SQL':'#059669','Shell':'#6b7280'};
+  return m[lang]||'#94a3b8';
+}
+
+function buildCard(repo){
+  const m=REPO_META[repo.name]||{};
+  const name=m.name||(repo.name.replace(/-/g,' '));
+  const desc=m.desc||(repo.description||'No description.');
+  const tags=m.tags||(repo.topics&&repo.topics.length?repo.topics:[repo.language].filter(Boolean));
+  const tagHtml=tags.map(t=>`<span class="ptag">${t}</span>`).join('');
+  const lang=repo.language?`<span style="display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;color:var(--muted);margin-left:.5rem;"><span style="width:9px;height:9px;border-radius:50%;background:${langColor(repo.language)};display:inline-block;"></span>${repo.language}</span>`:'';
+  return `<div class="project-row"><div><div class="proj-name">${name}${lang}</div><div class="proj-desc">${desc}</div><div class="proj-tags">${tagHtml}</div></div><a href="${repo.html_url}" class="proj-link" target="_blank">View &rarr;</a></div>`;
+}
+
+const PRIORITY=['wc2026-match-analysis','python-forge','sql-craft','python-dsa','adhocpra.github.io'];
+const EXCLUDE=['adhocpra'];
+
+fetch('https://api.github.com/users/adhocpra/repos?sort=updated&per_page=30')
+  .then(r=>r.json())
+  .then(repos=>{
+    const list=document.getElementById('projects-list');
+    const cnt=document.getElementById('proj-count');
+    const filtered=repos.filter(r=>!r.fork&&!EXCLUDE.includes(r.name));
+    const sorted=[
+      ...PRIORITY.map(n=>filtered.find(r=>r.name===n)).filter(Boolean),
+      ...filtered.filter(r=>!PRIORITY.includes(r.name))
+    ];
+    cnt.textContent=sorted.length+' repos • live';
+    cnt.className='proj-live';
+    list.innerHTML=sorted.map(buildCard).join('');
+  })
+  .catch(()=>{
+    document.getElementById('proj-count').textContent='repos';
+    document.getElementById('proj-count').className='proj-count';
+    document.getElementById('projects-list').innerHTML=`
+      <div class="project-row"><div><div class="proj-name">Brazil vs Morocco &mdash; WC 2026 Match Analysis</div><div class="proj-desc">Complete data analysis of the Brazil 2&ndash;1 Morocco FIFA World Cup 2026 group stage match with 6 visualizations built in Pandas and Matplotlib.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Pandas</span><span class="ptag">Matplotlib</span><span class="ptag">WC2026</span></div></div><a href="https://github.com/adhocpra/wc2026-match-analysis" class="proj-link" target="_blank">View &rarr;</a></div>
+      <div class="project-row"><div><div class="proj-name">Python Forge &mdash; OOP &amp; Data Science</div><div class="proj-desc">Structured Python repo covering full OOP progression plus data science with Pandas and Matplotlib.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">OOP</span><span class="ptag">Pandas</span><span class="ptag">Matplotlib</span></div></div><a href="https://github.com/adhocpra/python-forge" class="proj-link" target="_blank">View &rarr;</a></div>
+      <div class="project-row"><div><div class="proj-name">SQL Craft &mdash; MySQL Practice</div><div class="proj-desc">Structured SQL from table design through advanced analytical queries.</div><div class="proj-tags"><span class="ptag">MySQL</span><span class="ptag">SQL</span><span class="ptag">Joins</span></div></div><a href="https://github.com/adhocpra/sql-craft" class="proj-link" target="_blank">View &rarr;</a></div>
+      <div class="project-row"><div><div class="proj-name">Python DSA &mdash; Algorithms &amp; Data Structures</div><div class="proj-desc">Core data structures and algorithms from scratch in Python.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">DSA</span><span class="ptag">Algorithms</span></div></div><a href="https://github.com/adhocpra/python-dsa" class="proj-link" target="_blank">View &rarr;</a></div>`;
+  });
 </script>
 </body>
 </html>
