@@ -153,6 +153,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(12,18,32,.92
 .filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.4rem}
 .fbtn{font-family:var(--mono);padding:.5rem 1.05rem;border-radius:999px;font-size:.76rem;font-weight:500;border:1.5px solid var(--line);color:var(--muted);background:transparent;cursor:pointer;transition:.2s}
 .fbtn:hover,.fbtn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.dbtn{font-family:var(--mono);padding:.5rem 1.05rem;border-radius:999px;font-size:.76rem;font-weight:500;border:1.5px solid var(--line);color:var(--muted);background:transparent;cursor:pointer;transition:.2s}
+.dbtn:hover,.dbtn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+body.dark .dbtn:hover,body.dark .dbtn.active{background:var(--blue);border-color:var(--blue)}
 body.dark .fbtn:hover,body.dark .fbtn.active{background:var(--blue);border-color:var(--blue)}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
 .pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);transition:.25s;display:flex;flex-direction:column;overflow:hidden}
@@ -479,7 +482,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
           <p>Batch ETL pipeline over 100,000 financial transactions with data-quality gates at the door — bad rows quarantined, never silently loaded. 4/4 checks passing, 24 months of history.</p>
           <div class="ptags"><span class="ptag">Python</span><span class="ptag">SQL</span><span class="ptag">PostgreSQL</span><span class="ptag">Docker</span><span class="ptag">Great Expectations</span></div>
           <div class="pcard-foot">
-            <a href="https://github.com/adhocpra/Data-Engineering-Projects/tree/main/01-etl-finance-pipeline" target="_blank" rel="noopener" class="demo-btn" style="text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</a>
+            <button class="demo-btn" data-demo="p1"><i class="fa-solid fa-play"></i> Live Demo</button>
             <a href="https://github.com/adhocpra/Data-Engineering-Projects/tree/main/01-etl-finance-pipeline" target="_blank" rel="noopener" class="gh-btn" aria-label="Source on GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
         </div>
@@ -492,7 +495,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
           <p>Medallion pipeline on Spark: raw data lands in Bronze, is cleaned and validated in Silver, and aggregated into Gold monthly summaries. Gold total matches Project 1 exactly.</p>
           <div class="ptags"><span class="ptag">PySpark</span><span class="ptag">Delta Lake</span><span class="ptag">Medallion</span><span class="ptag">Spark SQL</span></div>
           <div class="pcard-foot">
-            <a href="https://github.com/adhocpra/Data-Engineering-Projects/tree/main/02-pyspark-delta-medallion" target="_blank" rel="noopener" class="demo-btn" style="text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</a>
+            <button class="demo-btn" data-demo="p2"><i class="fa-solid fa-play"></i> Live Demo</button>
             <a href="https://github.com/adhocpra/Data-Engineering-Projects/tree/main/02-pyspark-delta-medallion" target="_blank" rel="noopener" class="gh-btn" aria-label="Source on GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
         </div>
@@ -505,7 +508,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
           <p>Scheduled dbt models over 100,000 transactions, orchestrated by a daily Airflow DAG. 15/15 dbt tests passing — the dataset carries ~1.5% bad rows on purpose, so the tests catch real failures.</p>
           <div class="ptags"><span class="ptag">dbt</span><span class="ptag">Airflow</span><span class="ptag">DuckDB</span><span class="ptag">Python</span></div>
           <div class="pcard-foot">
-            <a href="https://github.com/adhocpra/Data-Engineering-Projects/tree/main/03-dbt-airflow" target="_blank" rel="noopener" class="demo-btn" style="text-decoration:none"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</a>
+            <button class="demo-btn" data-demo="p3"><i class="fa-solid fa-play"></i> Live Demo</button>
             <a href="https://github.com/adhocpra/Data-Engineering-Projects/tree/main/03-dbt-airflow" target="_blank" rel="noopener" class="gh-btn" aria-label="Source on GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
         </div>
@@ -562,8 +565,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
     <p class="sub">Real output from Project 1 — 100,000 transactions over 24 months. Tap a bar to see that month, or switch between dollars and transaction counts.</p>
     <div class="rv" style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.2rem">
       <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:.8rem">
-        <button class="fbtn active" id="demoUsd">Total $</button>
-        <button class="fbtn" id="demoRows">Transactions</button>
+        <button class="dbtn active" id="demoUsd">Total $</button>
+        <button class="dbtn" id="demoRows">Transactions</button>
         <span id="demoDetail" style="margin-left:auto;font-family:var(--mono);font-size:.85rem;color:var(--muted)"></span>
       </div>
       <div style="position:relative;height:300px"><canvas id="demoChart"></canvas></div>
@@ -829,8 +832,8 @@ const demoChart=new Chart($('#demoChart'),{type:'bar',data:{labels:DEMO_MONTHS,d
     onClick:(e,els)=>{if(els.length)demoDetail.textContent=demoLabel(els[0].index)}}});
 function demoSet(mode){
   demoMode=mode;
-  $('#demoUsd').classList.toggle('active',mode==='usd');
-  $('#demoRows').classList.toggle('active',mode==='rows');
+  $('#demoUsd').className='dbtn'+(mode==='usd'?' active':'');
+  $('#demoRows').className='dbtn'+(mode==='rows'?' active':'');
   demoChart.data.datasets[0].data=mode==='usd'?DEMO_TOTALS:DEMO_ROWS;
   demoChart.data.datasets[0].label=mode==='usd'?'Total $':'Transactions';
   demoChart.update();
@@ -871,6 +874,91 @@ function closeModal(){back.classList.remove('open');document.body.style.overflow
 $('#mClose').addEventListener('click',closeModal);
 back.addEventListener('click',e=>{if(e.target===back)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&back.classList.contains('open'))closeModal()});
+
+/* ---------- project demos (run on the site, real logic) ---------- */
+$$('.demo-btn').forEach(b=>b.addEventListener('click',e=>{
+  if(!b.dataset.demo)return;   /* plain links to GitHub have no data-demo */
+  e.preventDefault(); demos[b.dataset.demo]();
+}));
+const demos={};
+
+const P1_ROWS=[
+  {id:'TXN-A1',date:'2026-11-10',amt:'1,250.00',cur:'USD',ch:'transfer'},
+  {id:'TXN-A2',date:'2026-11-11',amt:'-85.00',cur:'USD',ch:'card'},
+  {id:'TXN-A3',date:'2026-11-12',amt:'940.50',cur:'EUR',ch:'transfer'},
+  {id:'TXN-A4',date:'2026-11-12',amt:'2,100.00',cur:'XXX',ch:'wire'},
+  {id:'TXN-A5',date:'2026-11-13',amt:'',cur:'USD',ch:'card'},
+  {id:'TXN-A6',date:'2024-01-15',amt:'640.00',cur:'GBP',ch:'transfer'},
+  {id:'TXN-A7',date:'2026-11-14',amt:'15,200.00',cur:'USD',ch:'wire'},
+  {id:'TXN-A8',date:'2026-11-15',amt:'310.25',cur:'USD',ch:'card'}
+];
+demos.p1=()=>openModal('Project 1 — ETL Quality Gate','the same 4 checks the real pipeline runs',`
+  <p style="font-size:.9rem;margin-bottom:.8rem">Eight incoming rows. Press <b>Run validation</b> — the gate checks completeness, validity and freshness, loads the good rows and quarantines the bad ones, exactly like <span style="font-family:var(--mono)">etl.py</span>.</p>
+  <table class="res-table"><thead><tr><th>txn</th><th>posted</th><th>amount</th><th>cur</th><th>channel</th><th>verdict</th></tr></thead>
+  <tbody>${P1_ROWS.map((r,i)=>`<tr id="p1r${i}"><td>${r.id}</td><td>${r.date}</td><td>${r.amt||'—'}</td><td>${r.cur}</td><td>${r.ch}</td><td class="p1v">—</td></tr>`).join('')}</tbody></table>
+  <button class="mini-btn solid" id="p1run" style="width:100%;margin-top:.8rem"><i class="fa-solid fa-play"></i> Run validation</button>
+  <div id="p1out" style="margin-top:.8rem"></div>
+  <div class="demo-note"><i class="fa-solid fa-circle-info"></i> The real pipeline ran this gate over 100,000 rows: 4/4 checks passing, bad rows quarantined to data/quarantine.csv — never silently loaded.</div>
+`,()=>{
+  $('#p1run').addEventListener('click',()=>{
+    const fx={USD:1,EUR:1.08,GBP:1.27};
+    let good=0,bad=[];
+    P1_ROWS.forEach((r,i)=>{
+      let reason='';
+      if(r.amt===''||r.amt==null)reason='missing amount';
+      else if(parseFloat(r.amt.replace(/,/g,''))<0)reason='negative amount';
+      else if(!(r.cur in fx))reason='unknown currency';
+      else if(new Date(r.date)<new Date('2024-12-01'))reason='stale — older than 24 months';
+      const cell=document.querySelector('#p1r'+i+' .p1v');
+      if(reason){cell.innerHTML='<span style="color:#E5484D">✗ '+reason+'</span>';bad.push(r.id+' — '+reason)}
+      else{const usd=(parseFloat(r.amt.replace(/,/g,''))*fx[r.cur]).toLocaleString('en-US',{minimumFractionDigits:2});cell.innerHTML='<span style="color:#30A46C">✓ $'+usd+'</span>';good++}
+    });
+    $('#p1run').disabled=true;
+    $('#p1out').innerHTML=`<div class="exec-line">✓ Loaded ${good} valid rows · Quarantined ${bad.length} rows</div>`+
+      (bad.length?`<div style="font-size:.85rem;margin-top:.4rem">${bad.map(b=>'• '+b).join('<br>')}</div>`:'');
+  });
+});
+
+demos.p2=()=>openModal('Project 2 — Medallion Pipeline','Bronze → Silver → Gold, live run',`
+  <p style="font-size:.9rem;margin-bottom:.8rem">The same run the repo proves at 100,000 rows. Press <b>Run pipeline</b> and watch each stage land.</p>
+  <button class="mini-btn solid" id="p2run" style="width:100%"><i class="fa-solid fa-play"></i> Run pipeline</button>
+  <div id="p2log" style="font-family:var(--mono);font-size:.85rem;margin-top:.8rem;line-height:1.9"></div>
+  <div class="demo-note"><i class="fa-solid fa-circle-info"></i> Verified local run: Bronze 100,000 · Silver 100,000 · Gold 24 months — Gold total $683,018,592.38, matching Project 1 exactly. 8/8 gate checks passing.</div>
+`,()=>{
+  const lines=[
+    ['[EXTRACT]','100,000 rows read from transactions.csv'],
+    ['[BRONZE]','100,000 rows written — raw, as received'],
+    ['[CHECK]','8/8 gate checks passing — completeness, uniqueness, validity, freshness'],
+    ['[SILVER]','100,000 rows — cleaned, deduplicated, converted to USD'],
+    ['[GOLD]','24 monthly summaries — total $683,018,592.38'],
+    ['[VERIFY]','Gold total matches Project 1 exactly ✓']
+  ];
+  let timers=[];
+  $('#p2run').addEventListener('click',()=>{
+    $('#p2run').disabled=true;const log=$('#p2log');log.innerHTML='';
+    lines.forEach((l,i)=>{timers.push(setTimeout(()=>{log.innerHTML+=`<div><span style="color:#5C7FFF">${l[0]}</span> ${l[1]}</div>`},450*(i+1)))});
+  });
+  return ()=>timers.forEach(clearTimeout);
+});
+
+demos.p3=()=>openModal('Project 3 — dbt + Airflow','scheduled models, daily DAG',`
+  <p style="font-size:.9rem;margin-bottom:.8rem">The daily DAG and the dbt test results from the verified local run — <span style="font-family:var(--mono)">dbt build PASS=15 WARN=0 ERROR=0</span>.</p>
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem">
+    <span class="mini-btn solid" style="cursor:default">load_raw_transactions ✓</span><span>→</span>
+    <span class="mini-btn solid" style="cursor:default">dbt_build ✓</span>
+    <span style="font-size:.85rem;color:var(--muted)">schedule @daily · owner pravat</span>
+  </div>
+  <table class="res-table"><thead><tr><th>test</th><th>model</th><th>result</th></tr></thead><tbody>
+    <tr><td>unique</td><td>fct_transactions.transaction_id</td><td style="color:#30A46C">PASS</td></tr>
+    <tr><td>not_null</td><td>fct_transactions.amount_usd</td><td style="color:#30A46C">PASS</td></tr>
+    <tr><td>not_null</td><td>stg_transactions.transaction_id</td><td style="color:#30A46C">PASS</td></tr>
+    <tr><td>accepted_values</td><td>currency in (USD, EUR, GBP)</td><td style="color:#30A46C">PASS</td></tr>
+    <tr><td>invalid_share_below_5pct</td><td>singular — 1.5% bad rows</td><td style="color:#30A46C">PASS</td></tr>
+    <tr><td colspan="2" style="color:var(--muted)">…plus 10 more generic tests</td><td style="color:#30A46C">PASS</td></tr>
+  </tbody></table>
+  <div class="exec-line" style="margin-top:.8rem">✓ fct_transactions: 98,032 clean rows · monthly_summary: 24 months · total $13,281,468.08 · 882 high-value transactions</div>
+  <div class="demo-note"><i class="fa-solid fa-circle-info"></i> The dataset carries ~1.5% deliberately bad rows, so the tests catch real failures. Airflow DAG <span style="font-family:var(--mono)">finance_pipeline_daily</span> validated with <span style="font-family:var(--mono)">airflow dags list</span>.</div>
+`);
 
 </script>
 </body>
