@@ -554,6 +554,31 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);padding:
   </div>
 </section>
 
+<!-- LIVE DEMO -->
+<section class="section" id="demo">
+  <div class="wrap">
+    <div class="eyebrow">demo.live()</div>
+    <h2 class="h2">See the pipeline output</h2>
+    <p class="sub">Real output from Project 1 — 100,000 transactions over 24 months. Tap a bar to see that month, or switch between dollars and transaction counts.</p>
+    <div class="rv" style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.2rem">
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:.8rem">
+        <button class="fbtn active" id="demoUsd">Total $</button>
+        <button class="fbtn" id="demoRows">Transactions</button>
+        <span id="demoDetail" style="margin-left:auto;font-family:var(--mono);font-size:.85rem;color:var(--muted)"></span>
+      </div>
+      <div style="position:relative;height:300px"><canvas id="demoChart"></canvas></div>
+      <p style="font-size:.8rem;color:var(--muted);margin-top:.8rem">Nov 2026 is a partial month — data runs to Nov 16. Every other month is complete. Gold total: $683,018,592.38 · Quality gates: Project 1 — 4/4 passing · Project 2 — 8/8 passing.</p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
+        <div style="flex:1;min-width:140px;text-align:center;border:1px solid var(--line);border-radius:12px;padding:.7rem"><div style="font-weight:700">Bronze</div><div style="font-size:.85rem;color:var(--muted)">100,000 rows<br>raw, as received</div></div>
+        <div style="align-self:center;color:var(--muted)">→</div>
+        <div style="flex:1;min-width:140px;text-align:center;border:1px solid var(--line);border-radius:12px;padding:.7rem"><div style="font-weight:700">Silver</div><div style="font-size:.85rem;color:var(--muted)">100,000 rows<br>cleaned + validated</div></div>
+        <div style="align-self:center;color:var(--muted)">→</div>
+        <div style="flex:1;min-width:140px;text-align:center;border:1px solid var(--line);border-radius:12px;padding:.7rem"><div style="font-weight:700">Gold</div><div style="font-size:.85rem;color:var(--muted)">24 months<br>$683,018,592.38</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section class="section xp-band" id="experience">
   <div class="wrap">
@@ -786,6 +811,32 @@ new Chart($('#radar'),{type:'radar',data:{
     scales:{r:{min:0,max:100,ticks:{display:false},grid:{color:'rgba(255,255,255,0.09)'},
       angleLines:{color:'rgba(255,255,255,0.09)'},
       pointLabels:{color:'#9AA5BC',font:{family:'IBM Plex Mono',size:11}}}}}});
+
+
+/* ---------- live demo chart (Project 1 monthly output) ---------- */
+const DEMO_MONTHS=['2024-12','2025-01','2025-02','2025-03','2025-04','2025-05','2025-06','2025-07','2025-08','2025-09','2025-10','2025-11','2025-12','2026-01','2026-02','2026-03','2026-04','2026-05','2026-06','2026-07','2026-08','2026-09','2026-10','2026-11'];
+const DEMO_TOTALS=[28777376,29182354,26646972,28631710,28827344,29520321,27670144,30912211,29615590,28416449,29929702,29250638,29462114,30150617,28902942,29089620,29257757,28692537,29219281,30200539,29491714,27737610,27680626,15752425];
+const DEMO_ROWS=[4318,4362,3874,4336,4245,4340,4147,4370,4385,4144,4282,4273,4281,4323,4036,4241,4310,4340,4251,4316,4276,4163,4158,2229];
+let demoMode='usd';
+const demoDetail=$('#demoDetail');
+function demoLabel(i){return DEMO_MONTHS[i]+' · '+DEMO_ROWS[i].toLocaleString()+' txns · $'+DEMO_TOTALS[i].toLocaleString()}
+demoDetail.textContent=demoLabel(13);
+const demoChart=new Chart($('#demoChart'),{type:'bar',data:{labels:DEMO_MONTHS,datasets:[{label:'Total $',data:DEMO_TOTALS,backgroundColor:'rgba(43,89,255,0.85)',borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    tooltip:{callbacks:{label:c=>demoMode==='usd'?('$'+c.parsed.y.toLocaleString()):(c.parsed.y.toLocaleString()+' transactions')}}},
+    scales:{x:{ticks:{font:{family:'IBM Plex Mono',size:10},color:'#8B95A8',maxRotation:60},grid:{display:false}},
+      y:{ticks:{font:{family:'IBM Plex Mono',size:10},color:'#8B95A8',callback:v=>demoMode==='usd'?('$'+(v/1000000).toFixed(0)+'M'):v.toLocaleString()},grid:{color:'rgba(27,36,55,0.08)'}}},
+    onClick:(e,els)=>{if(els.length)demoDetail.textContent=demoLabel(els[0].index)}}});
+function demoSet(mode){
+  demoMode=mode;
+  $('#demoUsd').classList.toggle('active',mode==='usd');
+  $('#demoRows').classList.toggle('active',mode==='rows');
+  demoChart.data.datasets[0].data=mode==='usd'?DEMO_TOTALS:DEMO_ROWS;
+  demoChart.data.datasets[0].label=mode==='usd'?'Total $':'Transactions';
+  demoChart.update();
+}
+$('#demoUsd').addEventListener('click',()=>demoSet('usd'));
+$('#demoRows').addEventListener('click',()=>demoSet('rows'));
 
 /* ---------- project filters ---------- */
 $$('.fbtn').forEach(b=>b.addEventListener('click',()=>{
